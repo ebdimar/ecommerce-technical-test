@@ -1,13 +1,14 @@
-import { ItemList } from '@/components/ItemList'
+import { ProductsContainer } from '@/components/ProductsContainer'
 import { fetchItems } from '@/lib/api'
+import { removeDuplicates } from '@/lib/utils'
 import { Mobile } from '@/types'
 
 export default async function HomePage() {
-  const mobiles = await fetchItems<Mobile>(20)
-
+  const data = await fetchItems<Mobile>(20)
+  const unicData = removeDuplicates(data, 'id')
   return (
-    <main className="mainContainer">
-      <ItemList items={mobiles} />
+    <main>
+      <ProductsContainer initialItems={unicData} />
     </main>
   )
 }

@@ -9,15 +9,3 @@
 body {
     font-family: helvetica, sans-serif;
 }
-
-.mainContainer {
-    padding: 1.5rem 1rem;
-
-    @media (min-width: 768px) {
-        padding: 3rem 2.5rem;
-    }
-
-    @media (min-width: 1280px) {
-        padding: 3rem 6.25rem;
-    }
-}
