@@ -6,7 +6,7 @@ export interface Mobile {
     imageUrl: string
 }
 
-export interface MobileDetails {
+export interface MobileDetailsApi {
     id: string
     brand: string
     name: string
@@ -14,7 +14,7 @@ export interface MobileDetails {
     basePrice: number
     rating: number
     specs: Specs
-    colorOption: ColorOption[]
+    colorOptions: ColorOption[]
     storageOptions: StorageOption[]
     similarProducts: Mobile[]
 }
