@@ -1,12 +1,15 @@
+import { DetailsComponent } from '@/components/DetailsComponent'
 import { fetchItemById } from '@/lib/api'
-import { Mobile } from '@/types'
+import { MobileDetailsApi } from '@/types'
+import styles from '@/styles/components/Details.module.css'
 
 export default async function ItemDetailPage({ params }: { params: { id: string } }) {
-  const item = await fetchItemById<Mobile>(params.id)
-
+  const item = await fetchItemById<MobileDetailsApi>(params.id)
   return (
-    <main>
-      <h1>Item ID: {params.id}</h1>
+    <main className={styles.detailsContainer}>
+      <div className="details-info-container">
+        <DetailsComponent item={item} />
+      </div>
     </main>
   )
 }

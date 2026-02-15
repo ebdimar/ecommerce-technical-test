@@ -1,5 +1,9 @@
 :root {
     --color-black: #000000;
-    --color-grey: #79736D;
-    --colore-grey-light: #AAAAAA
+    --color-grey-strong: #79736D;
+    --color-grey: #AAAAAA;
+    --color-grey-light: #CCCCCC;
+    --color-disabled: #F3F2F2;
+    --color-text-disabled: #C2BFBC;
+
 }
