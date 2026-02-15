@@ -39,3 +39,8 @@ export async function searchItems<T>(query: string): Promise<T[]> {
     }
     return fetchFromAPI<T[]>(`?search=${encodeURIComponent(query)}`);
 }
+
+export async function fetchItemById<T>(id: string): Promise<T[]> {
+
+    return fetchFromAPI<T[]>(`/${id}`);
+}
