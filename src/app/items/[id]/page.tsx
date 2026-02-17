@@ -4,8 +4,9 @@ import { MobileDetailsApi } from '@/types'
 import styles from '@/styles/components/Details.module.css'
 import { Table } from '@/components/Table'
 
-export default async function ItemDetailPage({ params }: { params: { id: string } }) {
-  const item = await fetchItemById<MobileDetailsApi>(params.id)
+export default async function ItemDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params
+  const item = await fetchItemById<MobileDetailsApi>(id)
   console.log(item, 'item')
   const specs = [
     { name: 'Brand', value: item.brand },

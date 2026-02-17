@@ -1,42 +1,42 @@
 export interface Mobile {
-    id: string
-    brand: string
-    name: string
-    basePrice: number
-    imageUrl: string
+  id: string
+  brand: string
+  name: string
+  basePrice: number
+  imageUrl: string
 }
 
 export interface MobileDetailsApi {
-    id: string
-    brand: string
-    name: string
-    description: string
-    basePrice: number
-    rating: number
-    specs: Specs
-    colorOptions: ColorOption[]
-    storageOptions: StorageOption[]
-    similarProducts: Mobile[]
+  id: string
+  brand: string
+  name: string
+  description: string
+  basePrice: number
+  rating: number
+  specs: Specs
+  colorOptions: ColorOption[]
+  storageOptions: StorageOption[]
+  similarProducts: Mobile[]
 }
 
 interface Specs {
-    screen: string
-    resolution: string,
-    processor: string,
-    mainCamera: string,
-    selfieCamera: string,
-    battery: string,
-    os: string,
-    screenRefreshRate: string
+  screen: string
+  resolution: string
+  processor: string
+  mainCamera: string
+  selfieCamera: string
+  battery: string
+  os: string
+  screenRefreshRate: string
 }
 
 interface ColorOption {
-    name: string,
-    hexCode: string,
-    imageUrl: string
+  name: string
+  hexCode: string
+  imageUrl: string
 }
 
 interface StorageOption {
-    capacity: string,
-    price: number
+  capacity: string
+  price: number
 }
