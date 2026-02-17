@@ -1,0 +1,48 @@
+.tableWrapper {
+    @media (min-width: 1280px) {
+        padding: 0;
+        width: 1200px;
+    }
+
+    & h2 {
+        margin-bottom: 2.5rem;
+        font-size: 1.5rem;
+        text-transform: uppercase;
+        font-weight: 300;
+    }
+
+    & table {
+        border-collapse: collapse;
+        border-top: 1px solid var(--color-black);
+        border-bottom: 1px solid var(--color-black);
+        ;
+    }
+
+    & tr {
+        padding-block: 1rem;
+        display: grid;
+        grid-template-columns: 150px auto;
+        gap: 0.75rem;
+        border-bottom: 1px solid var(--color-black);
+
+        @media (min-width: 768px) {
+            grid-template-columns: 300px auto;
+            gap: 3rem;
+        }
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        & th {
+            text-transform: uppercase;
+            text-align: start;
+            font-weight: 300;
+        }
+
+        & th,
+        & td {
+            font-size: 0.75rem;
+        }
+    }
+}
