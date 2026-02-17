@@ -40,14 +40,11 @@ export function DetailsComponent({ item }: DetailsComponentProps) {
         <fieldset
           className={`${stylesRadioButton.radioButtons} ${stylesRadioButton.capacityPicker}`}
         >
-          <legend className={stylesRadioButton.radioButtonLegend}>
-            STORAGE ¿HOW MUCH SPACE DO YOU NEED?
-          </legend>
+          <legend>STORAGE ¿HOW MUCH SPACE DO YOU NEED?</legend>
           <div>
             {item.storageOptions.map((storage, index) => (
-              <label className={stylesRadioButton.radioButtonLabel} key={index}>
+              <label key={index}>
                 <input
-                  className={stylesRadioButton.radioButtonInput}
                   type="radio"
                   name="storage"
                   checked={selectedCapacityIndex === index}
@@ -59,32 +56,22 @@ export function DetailsComponent({ item }: DetailsComponentProps) {
           </div>
         </fieldset>
         <fieldset className={`${stylesRadioButton.radioButtons} ${stylesRadioButton.colorPicker}`}>
-          <legend className={stylesRadioButton.radioButtonLegend}>
-            COLOR. PICK YOUR FAVOURITE.
-          </legend>
-          <div className={stylesRadioButton.radioButtonContainer}>
+          <legend>COLOR. PICK YOUR FAVOURITE.</legend>
+          <div>
             {item.colorOptions.map((color, index) => (
-              <label key={index} className={stylesRadioButton.radioButtonLabel}>
+              <label key={index}>
                 <input
-                  className={stylesRadioButton.radioButtonInput}
                   aria-label={color.name}
                   type="radio"
                   name="color"
                   checked={selectedColorIndex === index}
                   onChange={() => setSelectedColorIndex(index)}
                 />
-                <span
-                  className={stylesRadioButton.radioButtonSpan}
-                  style={{ backgroundColor: color.hexCode }}
-                ></span>
+                <span style={{ backgroundColor: color.hexCode }}></span>
               </label>
             ))}
           </div>
-          {selectedColorIndex !== null && (
-            <p className={stylesRadioButton.radioButtonColorName}>
-              {item.colorOptions[selectedColorIndex].name}
-            </p>
-          )}
+          {selectedColorIndex !== null && <p>{item.colorOptions[selectedColorIndex].name}</p>}
         </fieldset>
 
         <ButtonCustom disabled={!canAddToCart} className={styles.detailsButton} text={'Añadir'} />

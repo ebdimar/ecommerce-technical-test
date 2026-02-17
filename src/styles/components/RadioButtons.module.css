@@ -2,12 +2,12 @@
     border: none;
     margin-bottom: 2rem;
 
-    .radioButtonLegend {
+    & legend {
         margin-bottom: 1.25rem;
         font-size: 0.75rem;
     }
 
-    .radioButtonInput[type="radio"] {
+    & input[type="radio"] {
         position: absolute;
         opacity: 0;
         pointer-events: none;
@@ -17,7 +17,7 @@
 }
 
 .radioButtons.capacityPicker {
-    .radioButtonLabel {
+    & label {
         display: inline-block;
         padding: 1rem 1.5rem;
         border: 1px solid var(--color-grey-light);
@@ -25,36 +25,23 @@
         font-size: 0.75rem;
     }
 
-    .radioButtonInput[type="radio"]:checked+label,
-    .radioButtonLabel:has(input:checked) {
+    & input[type="radio"]:checked+label,
+    & label:has(input:checked) {
         border: 1px solid var(--color-black);
 
     }
 }
 
-.radioButtons.capacityPicker {
-    .radioButtonLabel {
-        display: inline-block;
-        padding: 1rem 1.5rem;
-        border: 1px solid var(--color-grey-light);
-        cursor: pointer;
-        font-size: 0.75rem;
-    }
 
-    .radioButtonInput[type="radio"]:checked+label,
-    .radioButtonLabel:has(input:checked) {
-        border: 1px solid var(--color-black);
-    }
-}
 
 .radioButtons.colorPicker {
-    .radioButtonContainer {
+    & div {
         display: flex;
         gap: 1rem;
         margin-bottom: 0.5rem
     }
 
-    .radioButtonLabel {
+    & label {
         border: 1px solid var(--color-grey-light);
         cursor: pointer;
         width: 1.5rem;
@@ -62,18 +49,18 @@
         padding: 2px;
     }
 
-    .radioButtonSpan {
+    & span {
         display: block;
         width: 100%;
         height: 100%;
     }
 
-    .radioButtonInput[type="radio"]:checked+label,
-    .radioButtonLabel:has(input:checked) {
+    & input[type="radio"]:checked+label,
+    & label:has(input:checked) {
         border: 1px solid var(--color-black);
     }
 
-    .radioButtonColorName {
+    & p {
         font-size: 0.75rem
     }
 }
