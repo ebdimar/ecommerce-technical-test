@@ -1,8 +1,10 @@
 import { DetailsComponent } from '@/components/DetailsComponent'
 import { fetchItemById } from '@/lib/api'
 import { MobileDetailsApi } from '@/types'
-import styles from '@/styles/components/Details.module.css'
 import { Table } from '@/components/Table'
+import { Carousel } from '@/components/Carousel'
+import { Card } from '@/components/Card'
+import stylesPage from '@/app/items/[id]/page.module.css'
 
 export default async function ItemDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
@@ -22,10 +24,18 @@ export default async function ItemDetailPage({ params }: { params: Promise<{ id:
     { name: 'Refresh Rate', value: item.specs.screenRefreshRate },
   ]
   return (
-    <main className={styles.detailsContainer}>
-      <div className="details-info-container">
+    <main className={stylesPage.pageDetailsContainer}>
+      <div className={stylesPage.pageDetailsWrapper}>
         <DetailsComponent item={item} />
         <Table rows={specs} title={'Specifications'} />
+        <section>
+          <h2>SIMILAR ITEMS</h2>
+          <Carousel
+            items={item.similarProducts}
+            className={stylesPage.carouselCard}
+            renderItem={(product) => <Card key={item.id} item={product} />}
+          />
+        </section>
       </div>
     </main>
   )
