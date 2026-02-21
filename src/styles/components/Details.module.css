@@ -1,16 +1,3 @@
-.detailsContainer {
-    padding: 0 1rem;
-
-    @media (min-width: 768px) {
-        padding: 0 2.5rem;
-    }
-
-    @media (min-width: 1280px) {
-        display: flex;
-        justify-content: center;
-    }
-}
-
 .detailsWrapper {
     display: flex;
     flex-direction: column;
@@ -21,10 +8,6 @@
         align-items: center;
     }
 
-    @media (min-width: 1280px) {
-        padding: 0;
-        width: 1200px;
-    }
 
     .detailsImage {
         object-fit: contain;

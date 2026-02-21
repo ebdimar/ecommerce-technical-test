@@ -27,7 +27,10 @@ export default async function ItemDetailPage({ params }: { params: Promise<{ id:
     <main className={stylesPage.pageDetailsContainer}>
       <div className={stylesPage.pageDetailsWrapper}>
         <DetailsComponent item={item} />
-        <Table rows={specs} title={'Specifications'} />
+        <section>
+          <h2>Specifications</h2>
+          <Table rows={specs} />
+        </section>
         <section>
           <h2>SIMILAR ITEMS</h2>
           <Carousel

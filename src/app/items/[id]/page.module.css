@@ -2,7 +2,7 @@
     padding: 0 1rem;
 
     @media (min-width: 768px) {
-        padding: 0 2.5rem;
+        padding: 0 2.5rem 2.5rem;
     }
 
     @media (min-width: 1280px) {
@@ -15,6 +15,29 @@
             padding: 0;
             width: 1200px;
         }
+    }
+
+    & section {
+        margin-bottom: 5rem;
+
+        @media (min-width: 768px) {
+            margin-bottom: 5.5rem;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        @media (min-width: 768px) {
+            margin-bottom: 9.625rem;
+        }
+    }
+
+    & h2 {
+        margin-bottom: 2.5rem;
+        font-size: 1.5rem;
+        text-transform: uppercase;
+        font-weight: 300;
     }
 
     .carouselCard {
