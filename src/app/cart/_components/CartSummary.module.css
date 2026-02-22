@@ -1,0 +1,54 @@
+.cartSummaryWrapper {
+    padding: 1rem 1rem 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    row-gap: 1.5rem;
+
+    @media (min-width: 768px) {
+        row-gap: none;
+        gap: 3.5rem;
+        padding: 1.5rem 2.5rem 2.5rem;
+        justify-content: flex-end;
+    }
+
+    @media (min-width: 1280px) {
+        gap: 5rem;
+        padding: 1.5rem 6.25rem 3.5rem;
+    }
+
+    .cartSummaryPrice {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+
+        @media (min-width: 768px) {
+            order: 1;
+            gap: 1.5rem;
+            width: auto;
+            align-items: center;
+        }
+
+    }
+
+    .cartSummaryButtonContinue,
+    .cartSummaryButtonPay {
+        width: calc(50% - 0.5rem)
+    }
+
+    .cartSummaryButtonContinue {
+        @media (min-width: 768px) {
+            order: 0;
+            width: 200px;
+            margin-right: auto
+        }
+    }
+
+    .cartSummaryButtonPay {
+        @media (min-width: 768px) {
+            order: 2;
+            width: 260px;
+        }
+    }
+
+}

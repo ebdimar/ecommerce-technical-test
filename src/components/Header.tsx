@@ -5,7 +5,8 @@ import { usePathname } from 'next/navigation'
 import { useCartStore } from '@/store/cartStore'
 
 export function Header() {
-  const totalItems = useCartStore((state) => state.totalItems)
+  const items = useCartStore((state) => state.items)
+  const totalItems = items.length
   const pathname = usePathname()
   const isCheckout = pathname === '/cart'
   return (
