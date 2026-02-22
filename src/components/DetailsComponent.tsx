@@ -2,10 +2,10 @@
 
 import { MobileDetailsApi } from '@/types'
 import { useState } from 'react'
+import { ButtonCustom } from './ButtonCustom'
+import { useCartStore } from '@/store/cartStore'
 import stylesRadioButton from '@/styles/components/RadioButtons.module.css'
 import styles from '@/styles/components/Details.module.css'
-import { ButtonCustom } from './ButtonCustom'
-
 interface DetailsComponentProps {
   item: MobileDetailsApi
 }
@@ -14,7 +14,7 @@ export function DetailsComponent({ item }: DetailsComponentProps) {
   const [selectedColorIndex, setSelectedColorIndex] = useState<number | null>(null)
   const [selectedCapacityIndex, setSelectedCapacityIndex] = useState<number | null>(null)
 
-  const canAddToCart = selectedColorIndex !== null && selectedColorIndex !== null
+  const canAddToCart = selectedColorIndex !== null && selectedCapacityIndex !== null
 
   const currentImage =
     selectedColorIndex !== null ? item.colorOptions[selectedColorIndex] : item.colorOptions[0]
@@ -24,6 +24,23 @@ export function DetailsComponent({ item }: DetailsComponentProps) {
       ? item.storageOptions[selectedCapacityIndex].price
       : item.basePrice
 
+  const addItem = useCartStore((state) => state.addItem)
+
+  const handleAddToCart = () => {
+    if (!canAddToCart) return
+
+    const selectedColor = item.colorOptions[selectedColorIndex]
+    const selectedStorage = item.storageOptions[selectedCapacityIndex]
+
+    addItem({
+      id: item.id,
+      image: selectedColor.imageUrl,
+      name: item.name,
+      capacity: selectedStorage.capacity,
+      color: selectedColor.name,
+      price: selectedStorage.price,
+    })
+  }
   return (
     <section className={styles.detailsWrapper}>
       <img
@@ -74,7 +91,12 @@ export function DetailsComponent({ item }: DetailsComponentProps) {
           {selectedColorIndex !== null && <p>{item.colorOptions[selectedColorIndex].name}</p>}
         </fieldset>
 
-        <ButtonCustom disabled={!canAddToCart} className={styles.detailsButton} text={'Añadir'} />
+        <ButtonCustom
+          disabled={!canAddToCart}
+          className={styles.detailsButton}
+          text={'Añadir'}
+          onClick={handleAddToCart}
+        />
       </div>
     </section>
   )
