@@ -1,12 +1,20 @@
-import { Mobile } from '@/types'
-import { Card } from './Card'
 import styles from '@/styles/components/ItemList.module.css'
 
-export function ItemList({ items }: { items: Mobile[] }) {
+type ItemListProps<T extends { id: string }> = {
+  items: T[]
+  renderItem: (item: T) => React.ReactNode
+  className?: string
+}
+
+export function ItemList<T extends { id: string }>({
+  items,
+  renderItem,
+  className,
+}: ItemListProps<T>) {
   return (
-    <section className={styles.itemsContainer}>
+    <section className={`${styles.itemsContainer} ${className ?? ''}`.trim()}>
       {items.map((item) => (
-        <Card key={item.id} item={item} />
+        <div key={item.id}>{renderItem(item)}</div>
       ))}
     </section>
   )

@@ -7,6 +7,7 @@ import { Mobile } from '@/types'
 import { SearchBar } from './SearchBar'
 import { ItemList } from './ItemList'
 import { removeDuplicates } from '@/lib/utils'
+import { Card } from './Card'
 
 interface ProductsContainerProps {
   initialItems: Mobile[]
@@ -40,7 +41,7 @@ export function ProductsContainer({ initialItems }: ProductsContainerProps) {
   return (
     <>
       <SearchBar query={query} onQueryChange={setQuery} resultsCount={results.length} />
-      <ItemList items={results} />
+      <ItemList items={results} renderItem={(item) => <Card item={item} />} />
     </>
   )
 }

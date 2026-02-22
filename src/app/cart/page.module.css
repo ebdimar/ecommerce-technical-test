@@ -1,0 +1,32 @@
+.pageCartContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .cartItemsInfoWrapper {
+        padding: 1.5rem 1rem;
+
+        @media (min-width: 768px) {
+            padding: 2.5rem 2.75rem;
+        }
+
+        & h2 {
+            font-size: 1.25rem;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        .itemListCartItems {
+            gap: 1.5rem;
+            padding: 0;
+            grid-template-columns: 1fr;
+
+            @media (min-width: 1280px) {
+                grid-template-columns: repeat(auto-fill, minmax(548px, 1fr));
+                gap: 16px;
+            }
+        }
+
+    }
+}
