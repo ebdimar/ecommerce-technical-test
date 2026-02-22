@@ -1,4 +1,4 @@
-import { DetailsComponent } from '@/components/DetailsComponent'
+import { Details } from '@/app/items/[id]/_components/Details'
 import { fetchItemById } from '@/lib/api'
 import { MobileDetailsApi } from '@/types'
 import { Table } from '@/components/Table'
@@ -28,7 +28,7 @@ export default async function ItemDetailPage({ params }: { params: Promise<{ id:
     <main className={styles.pageDetailsContainer}>
       <BackButton label={'Back'} />
       <div className={styles.pageDetailsWrapper}>
-        <DetailsComponent item={item} />
+        <Details item={item} />
         <section>
           <h2>Specifications</h2>
           <Table rows={specs} />
