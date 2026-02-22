@@ -1,5 +1,6 @@
 import { ReactNode } from 'react'
 import { Metadata } from 'next'
+import { Header } from '@/components/Header'
 import '@/styles/global.css'
 
 export const metadata: Metadata = {
@@ -15,7 +16,10 @@ export const viewport = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body className="">{children}</body>
+      <body className="">
+        <Header />
+        {children}
+      </body>
     </html>
   )
 }
