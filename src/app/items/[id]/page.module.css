@@ -3,35 +3,6 @@
     align-items: center;
     overflow-x: clip;
     flex-direction: column;
-}
-
-.pageDetailsWrapper {
-    padding: 0 1rem;
-
-    @media (min-width: 768px) {
-        padding: 0 2.5rem 2.5rem;
-    }
-
-    @media (min-width: 1280px) {
-        padding: 0;
-        width: 1200px;
-    }
-
-    & section {
-        margin-bottom: 5rem;
-
-        @media (min-width: 768px) {
-            margin-bottom: 5.5rem;
-
-            &:last-child {
-                margin-bottom: 0;
-            }
-        }
-
-        @media (min-width: 768px) {
-            margin-bottom: 9.625rem;
-        }
-    }
 
     & h2 {
         margin-bottom: 2.5rem;
@@ -40,17 +11,64 @@
         font-weight: 300;
     }
 
-    .carouselCard {
-        & article {
-            border: 1px solid var(--color-black);
+    .pageDetailsWrapper {
+        padding: 0 1rem;
+
+        @media (min-width: 768px) {
+            padding: 0 2.5rem 2.5rem;
         }
 
-        & img {
-            @media (min-width: 1280px) {
-                height: 257px;
-                width: 312px;
+        @media (min-width: 1280px) {
+            padding: 0;
+            width: 1200px;
+        }
+
+        & section {
+            margin-bottom: 5rem;
+
+            @media (min-width: 768px) {
+                margin-bottom: 5.5rem;
+
             }
 
+            @media (min-width: 768px) {
+                margin-bottom: 9.625rem;
+            }
+        }
+
+
+
+
+    }
+
+    .carouselSection {
+        padding: 0 1rem 5rem;
+
+        @media (min-width: 768px) {
+            padding: 0 2.5rem 5rem;
+        }
+
+        @media (min-width: 1280px) {
+            width: 1200px;
+            padding: 0 0 9rem;
+        }
+
+        @media (min-width: 1280px) {
+            width: 1200px;
+        }
+
+        .carouselCard {
+            & article {
+                border: 1px solid var(--color-black);
+            }
+
+            & img {
+                @media (min-width: 1280px) {
+                    height: 257px;
+                    width: 312px;
+                }
+
+            }
         }
     }
 }
