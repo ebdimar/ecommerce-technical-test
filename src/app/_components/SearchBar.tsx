@@ -1,6 +1,6 @@
 'use client'
 
-import styles from '@/styles/components/SearchBar.module.css'
+import styles from '@/styles/pages/home/SearchBar.module.css'
 
 interface SearchBarProps {
   query: string
@@ -11,7 +11,7 @@ interface SearchBarProps {
 export function SearchBar({ query, onQueryChange, resultsCount }: SearchBarProps) {
   return (
     <search className={styles.searchBarContainer}>
-      <form className={styles.searchForm} role="search" onSubmit={(e) => e.preventDefault()}>
+      <form className={styles.searchForm} onSubmit={(e) => e.preventDefault()}>
         <input
           className={styles.searchBox}
           type="search"
