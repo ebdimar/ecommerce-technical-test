@@ -1,4 +1,11 @@
 .pageDetailsContainer {
+    display: flex;
+    align-items: center;
+    overflow-x: clip;
+    flex-direction: column;
+}
+
+.pageDetailsWrapper {
     padding: 0 1rem;
 
     @media (min-width: 768px) {
@@ -6,15 +13,8 @@
     }
 
     @media (min-width: 1280px) {
-        display: flex;
-        justify-content: center;
-        overflow-x: clip;
-
-
-        .pageDetailsWrapper {
-            padding: 0;
-            width: 1200px;
-        }
+        padding: 0;
+        width: 1200px;
     }
 
     & section {

@@ -5,6 +5,7 @@ import { Table } from '@/components/Table'
 import { Carousel } from '@/components/Carousel'
 import { Card } from '@/components/Card'
 import stylesPage from '@/app/items/[id]/page.module.css'
+import { BackButton } from '@/components/BackButton'
 
 export default async function ItemDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
@@ -25,6 +26,7 @@ export default async function ItemDetailPage({ params }: { params: Promise<{ id:
   ]
   return (
     <main className={stylesPage.pageDetailsContainer}>
+      <BackButton label={'Back'} />
       <div className={stylesPage.pageDetailsWrapper}>
         <DetailsComponent item={item} />
         <section>
