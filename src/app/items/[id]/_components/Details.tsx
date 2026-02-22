@@ -2,10 +2,11 @@
 
 import { MobileDetailsApi } from '@/types'
 import { useState } from 'react'
-import { ButtonCustom } from '../../../../components/ButtonCustom'
+import { ButtonCustom } from '@/components/ButtonCustom'
 import { useCartStore } from '@/store/cartStore'
-import stylesRadioButton from '@/styles/components/RadioButtons.module.css'
-import styles from '@/styles/components/Details.module.css'
+import stylesRadioButton from '@/styles/pages/details/RadioButtons.module.css'
+import styles from '@/styles/pages/details/details.module.css'
+
 interface DetailsProps {
   item: MobileDetailsApi
 }

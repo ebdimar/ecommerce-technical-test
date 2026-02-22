@@ -4,9 +4,12 @@
         display: flex;
         overflow-x: scroll;
         scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
         width: calc(100vw - 1rem);
         padding-bottom: 2.5rem;
+
+        @media (min-width: 1280px) {
+            width: 100%;
+        }
     }
 
     .track::-webkit-scrollbar {

@@ -5,28 +5,18 @@ import { Table } from '@/components/Table'
 import { Carousel } from '@/components/Carousel'
 import { Card } from '@/components/Card'
 import { BackButton } from '@/components/BackButton'
-import styles from '@/app/items/[id]/page.module.css'
+import { buildSpecs } from '@/lib/utils'
+import styles from '@/styles/pages/details/pageDetails.module.css'
 
 export default async function ItemDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
   const item = await fetchItemById<MobileDetailsApi>(id)
-  console.log(item, 'item')
-  const specs = [
-    { name: 'Brand', value: item.brand },
-    { name: 'Model', value: item.name },
-    { name: 'Description', value: item.description },
-    { name: 'Screen', value: item.specs.screen },
-    { name: 'Resolution', value: item.specs.resolution },
-    { name: 'Processor', value: item.specs.processor },
-    { name: 'Main Camera', value: item.specs.mainCamera },
-    { name: 'Selfie Camera', value: item.specs.selfieCamera },
-    { name: 'Battery', value: item.specs.battery },
-    { name: 'OS', value: item.specs.os },
-    { name: 'Refresh Rate', value: item.specs.screenRefreshRate },
-  ]
+
+  const specs = buildSpecs(item)
   return (
     <main className={styles.pageDetailsContainer}>
       <BackButton label={'Back'} />
+      <h1 className="sr-only">Product details</h1>
       <div className={styles.pageDetailsWrapper}>
         <Details item={item} />
         <section>
@@ -39,7 +29,7 @@ export default async function ItemDetailPage({ params }: { params: Promise<{ id:
         <Carousel
           items={item.similarProducts}
           className={styles.carouselCard}
-          renderItem={(product) => <Card key={item.id} item={product} />}
+          renderItem={(product) => <Card item={product} />}
         />
       </section>
     </main>
