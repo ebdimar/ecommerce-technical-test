@@ -47,27 +47,7 @@
         }
 
         .detailsButton {
-            background-color: var(--color-disabled);
-            color: var(--color-text-disabled);
-            border: none;
-            padding-block: 1rem;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-        }
-
-        .detailsButton {
             width: 100%;
-            border: none;
-            padding-block: 1rem;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            background-color: var(--color-black);
-            color: white;
-
-            &:disabled {
-                background-color: var(--color-disabled);
-                color: var(--color-text-disabled);
-            }
 
             @media (min-width: 768px) {
                 width: 260px;
