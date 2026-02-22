@@ -40,3 +40,12 @@ interface StorageOption {
   capacity: string
   price: number
 }
+
+export interface MobileCart {
+  id: string
+  image: string
+  name: string
+  capacity: string
+  color: string
+  price: number
+}
