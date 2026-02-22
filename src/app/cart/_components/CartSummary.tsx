@@ -1,6 +1,6 @@
 import { ButtonCustom } from '@/components/ButtonCustom'
 import type { MobileCart } from '@/types/index'
-import style from './CartSummary.module.css'
+import style from '@/styles/pages/cart/CartSummary.module.css'
 
 interface CartSummaryProps {
   items: MobileCart[]

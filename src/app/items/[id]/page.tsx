@@ -25,7 +25,7 @@ export default async function ItemDetailPage({ params }: { params: Promise<{ id:
         </section>
       </div>
       <section className={styles.carouselSection}>
-        <h2>SIMILAR ITEMS</h2>
+        <h2>Similar items</h2>
         <Carousel
           items={item.similarProducts}
           className={styles.carouselCard}

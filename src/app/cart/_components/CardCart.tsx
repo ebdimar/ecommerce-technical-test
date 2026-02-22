@@ -1,5 +1,5 @@
 import type { MobileCart } from '@/types'
-import styles from './/CartCard.module.css'
+import styles from '@/styles/pages/cart/CartCard.module.css'
 
 interface CartCardProps {
   item: MobileCart
