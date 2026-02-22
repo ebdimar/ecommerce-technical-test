@@ -26,6 +26,9 @@ const config: Config = {
 
   // The test environment that will be used for testing
   testEnvironment: 'jsdom',
+  moduleNameMapper: {
+    '\\.module\\.css$': 'identity-obj-proxy',
+  },
 }
 
 export default createJestConfig(config)
