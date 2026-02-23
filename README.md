@@ -1,6 +1,6 @@
 # Ecommerce Technical Test
 
-Mobile e-commerce application built with Next.js 14+.
+Mobile e-commerce application built with Next.js 15.
 
 ## Requirements
 
@@ -9,7 +9,7 @@ Mobile e-commerce application built with Next.js 14+.
 
 ## Environment Variables
 
-Create a `.env.local` file in the root of the project following the `.env.example` template and fill in your credentials:
+Create a `.env.local` file in the root of the project following the `.env.example` template and fill in your credentials.
 
 ```env
 NEXT_PUBLIC_API_URL=your_api_url
@@ -35,33 +35,51 @@ npm run lint     # run ESLint
 npm run test     # run tests
 ```
 
-## Architecture
+## Pages
 
-The application uses Next.js App Router with a hybrid Server/Client Components approach.
+The application consists of three pages:
+
+- **Home:** Displays the product catalogue with a live search functionality.
+- **Detail:** Shows product information, specifications, color and storage selectors, and similar products carousel.
+- **Cart:** Lists the added products and shows the total price.
+
+## Architecture
 
 ### Server Components and Data Fetching
 
-All API requests are made exclusively through Server Components. This decision has two main benefits:
+All API requests are made exclusively through Server Components. Pages fetch data on the server and pass it down to Client Components as props. This decision has two main benefits:
 
-**Security:** The API key never reaches the client. In a Client Component, the key would be exposed in the JavaScript bundle and visible in the browser. By fetching on the server, credentials remain protected.
+**Security:** The API key never reaches the client. In a Client Component, the key would be exposed in the browser. By fetching on the server, credentials remain protected.
 
 **SEO:** The server sends fully rendered HTML to the browser instead of an empty shell that requires JavaScript hydration. Search engine crawlers receive the content directly, improving indexability.
 
 ### State Management
 
-Zustand is used for the cart state instead of React Context for two reasons:
+React Context API is used for the cart state with `useReducer` for action handling and `localStorage` for persistence. The implementation consists of:
 
-**Performance:** Context re-renders every subscribed component whenever any part of the state changes. Zustand allows selective subscriptions via selectors, so only the components that depend on the changed state re-render.
+- A `cartReducer` pure function that handles all cart actions: `ADD_ITEM`, `REMOVE_ITEM`, `CLEAR_CART` and `LOAD_CART`.
+- A `CartProvider` that manages the state and synchronizes it with `localStorage` via `useEffect`.
+- A `useCart` custom hook that exposes the cart state and actions to any component within the provider.
 
-**Persistence:** Zustand's `persist` middleware handles localStorage synchronization out of the box, without additional code.
+Derived values like total price and item count are calculated locally in each component to maintain a single source of truth.
 
-Additionally, Zustand scales better than Context for larger applications, making it a safer choice if the project requires future growth.
+### Styling
 
-### Data fetching
+CSS Modules is used for styling. It is a native Next.js solution that keeps styles scoped to each component, ensuring that class names never conflict with each other across the application.
 
-Data fetching is handled entirely via Server Components. Pages fetch data on the server and pass it down to Client Components as props, avoiding unnecessary client-side requests and improving performance.
+### Generic Components
 
-### Project Structure
+`Carousel`, `ItemList` and `Table` are built as generic components with render props, allowing them to be reused across different pages with different data types without being coupled to a specific data structure.
+
+### Accessibility
+
+Semantic HTML is prioritized throughout the application: `<search>`, `<fieldset>`, `<legend>`, `<article>`, `<section>`. Radio buttons for color and storage selection are keyboard navigable with proper `aria-label` attributes. Visually hidden `<h1>` elements are used on pages where the design does not include a visible title.
+
+### TypeScript
+
+The project uses strict TypeScript throughout. Generic components like `Carousel`, `ItemList` and `Table` use type constraints to guarantee type safety without coupling to specific data structures. All API responses are typed via interfaces, and state actions are typed as discriminated unions in the cart reducer.
+
+## Project Structure
 
 ```
 src/
@@ -75,31 +93,19 @@ src/
 ├── components/                 # Shared components
 ├── hooks/                      # Custom hooks
 ├── lib/                        # API utilities and helper functions
-├── store/                      # Zustand store
+├── store/                      # Context API cart store
 ├── styles/                     # CSS Modules
 │   ├── components/             # Styles for shared components
-│   └── pages/                  # Styles for pages and their exclusive components
+│   └── pages/                  # Styles organized by page
 ├── tests/                      # Unit tests
 └── types/                      # TypeScript types and interfaces
 ```
-
-### Key Decisions
-
-**Server vs Client Components:** Pages and data fetching are Server Components. Only components that require interactivity (selectors, cart, search) are Client Components.
-
-**State management:** Zustand is used for the cart state with the `persist` middleware for localStorage persistence. Only `items` is stored; derived values like total price and item count are calculated locally to maintain a single source of truth.
-
-**Generic components:** `Carousel`, `ItemList` and `Table` are built as generic components with render props, allowing them to be reused across different pages with different data types.
-
-**Accessibility:** Semantic HTML is prioritized throughout (`<search>`, `<fieldset>`, `<legend>`, `<article>`). Radio buttons for color and storage selection are keyboard navigable with proper `aria-label` attributes.
-
-**CSS Modules:** Scoped styles with no external UI library. Each component has its own CSS Module.
 
 ## Testing
 
 Unit tests cover:
 
-- Cart store actions (add, remove, clear, duplicate prevention)
+- Cart reducer actions (add, remove, clear, load, duplicate prevention)
 - API utility functions (fetch, search, error handling)
 - `removeDuplicates` utility function
 - `Details` component interaction and cart integration
