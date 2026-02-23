@@ -3,8 +3,8 @@
 import { MobileDetailsApi } from '@/types'
 import { useState } from 'react'
 import { ButtonCustom } from '@/components/ButtonCustom'
-import { useCartStore } from '@/store/cartStore'
 import stylesRadioButton from '@/styles/pages/details/RadioButtons.module.css'
+import { useCart } from '@/store/CartContext'
 import styles from '@/styles/pages/details/details.module.css'
 
 interface DetailsProps {
@@ -25,7 +25,7 @@ export function Details({ item }: DetailsProps) {
       ? item.storageOptions[selectedCapacityIndex].price
       : item.basePrice
 
-  const addItem = useCartStore((state) => state.addItem)
+  const { addItem } = useCart()
 
   const handleAddToCart = () => {
     if (!canAddToCart) return

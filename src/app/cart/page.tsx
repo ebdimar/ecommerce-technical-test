@@ -1,14 +1,13 @@
 'use client'
 
 import { ItemList } from '@/components/ItemList'
-import { useCartStore } from '@/store/cartStore'
 import { CartCard } from './_components/CardCart'
 import { CartSummary } from './_components/CartSummary'
+import { useCart } from '@/store/CartContext'
 import style from '@/styles/pages/cart/cart.module.css'
 
 export default function CartPage() {
-  const items = useCartStore((state) => state.items)
-  const removeItem = useCartStore((state) => state.removeItem)
+  const { items, removeItem } = useCart()
   const totalItems = items.length
   return (
     <main className={style.pageCartContainer}>

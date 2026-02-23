@@ -2,10 +2,10 @@
 import Link from 'next/link'
 import style from '@/styles/components/Header.module.css'
 import { usePathname } from 'next/navigation'
-import { useCartStore } from '@/store/cartStore'
+import { useCart } from '@/store/CartContext'
 
 export function Header() {
-  const items = useCartStore((state) => state.items)
+  const { items } = useCart()
   const totalItems = items.length
   const pathname = usePathname()
   const isCheckout = pathname === '/cart'
