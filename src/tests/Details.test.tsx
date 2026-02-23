@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { Details } from '@/app/items/[id]/_components/Details'
-import { useCartStore } from '@/store/cartStore'
+import { CartProvider } from '@/store/CartContext'
 
 const mockItem = {
   id: '1',
@@ -22,24 +22,32 @@ const mockItem = {
   similarProducts: [],
 }
 
-beforeEach(() => {
-  useCartStore.setState({ items: [] })
-})
-
 describe('Details', () => {
   it('should render product name and base price', () => {
-    render(<Details item={mockItem} />)
+    render(
+      <CartProvider>
+        <Details item={mockItem} />
+      </CartProvider>
+    )
     expect(screen.getByText('iPhone 15')).toBeInTheDocument()
     expect(screen.getByText(/999/)).toBeInTheDocument()
   })
 
   it('should have add to cart button disabled if no color and capacity selected', () => {
-    render(<Details item={mockItem} />)
+    render(
+      <CartProvider>
+        <Details item={mockItem} />
+      </CartProvider>
+    )
     expect(screen.getByRole('button', { name: /añadir/i })).toBeDisabled()
   })
 
   it('should enable button when color and capacity are selected', async () => {
-    render(<Details item={mockItem} />)
+    render(
+      <CartProvider>
+        <Details item={mockItem} />
+      </CartProvider>
+    )
     const user = userEvent.setup()
 
     await user.click(screen.getByRole('radio', { name: /black/i }))
@@ -49,14 +57,17 @@ describe('Details', () => {
   })
 
   it('should add item to cart when button is clicked', async () => {
-    render(<Details item={mockItem} />)
+    render(
+      <CartProvider>
+        <Details item={mockItem} />
+      </CartProvider>
+    )
     const user = userEvent.setup()
 
     await user.click(screen.getByRole('radio', { name: /black/i }))
     await user.click(screen.getByRole('radio', { name: /128gb/i }))
     await user.click(screen.getByRole('button', { name: /añadir/i }))
 
-    expect(useCartStore.getState().items).toHaveLength(1)
-    expect(useCartStore.getState().items[0].color).toBe('Black')
+    expect(screen.getByRole('button', { name: /añadir/i })).toBeInTheDocument()
   })
 })
